@@ -2,6 +2,7 @@
 
 #### Description
 学习 react 时，写的笔记和练习。
+React 是一个用于构建用户界面的 JavaScript 库。你可以在首页或教程中学习什么是 React。
 
 #### Software Architecture
 Software architecture description
