@@ -96,21 +96,15 @@ export const Book: React.FC = () => {
   };
 
   const getRandomuserParams = (params: Params) => ({
-    results: params.pagination?.pageSize,
-    page: params.pagination?.current,
-    ...params,
+    pageSize: params.pagination?.pageSize,
+    current: params.pagination?.current,
   });
 
-  //https://hzpc-1258873690.ap-shanghai.service.tcloudbase.com/request/v1.0/db_book/?limit=2&skip=3
   const apiUrl = 'https://hzpc-1258873690.ap-shanghai.service.tcloudbase.com/request/v1.0/db_book'
 
   const fetchData = useCallback(async (params: Params = {}) => {
-    const current = params.pagination.current
-    const pageSize = params.pagination.pageSize
-    console.log(9999, current, pageSize)
-    console.log('fetchData中的pagination', params.pagination)
-    const parameter = getRandomuserParams(params)
-    console.log('parameter', parameter)
+    const current = getRandomuserParams(params).current
+    const pageSize = getRandomuserParams(params).pageSize
     // return pagination
     try {
       setLoading(true);
@@ -156,7 +150,7 @@ export const Book: React.FC = () => {
   };
 
   return (
-    <Table size='middle'
+    <Table bordered={true} size='middle'
       columns={column}
       rowKey={record => record._id}
       dataSource={data}

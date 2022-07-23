@@ -1,9 +1,6 @@
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu } from 'antd';
-import React from 'react';
+import { Layout, Menu } from 'antd';
 import styles from './index.module.less'
-import { Link, BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
-import { Home, List, NoFoundPage, Desc, Test } from '../pages'
+import { useNavigate } from 'react-router-dom'
 
 import RenderRoutes from '../routes'
 const { Header, Content, Footer, Sider } = Layout;
@@ -21,32 +18,13 @@ const items = [
     {
         label: '详情',
         key: '/code',
-        children: [{ label: '404', key: '/404' },{ label: 'Test', key: '/test' }],
+        children: [{ label: '404', key: '/404' }, { label: 'Test', key: '/test' }],
     },
 ];
 
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-    const key = String(index + 1);
-    return {
-        key: `sub${key}`,
-        icon: React.createElement(icon),
-        label: `subnav ${key}`,
-        children: new Array(4).fill(null).map((_, j) => {
-            const subKey = index * 4 + j + 1;
-            return {
-                key: subKey,
-                label: `option${subKey}`,
-            };
-        }),
-    };
-});
-
-const clickHand = () => {
-
-}
 const MainLayout = () => {
     const year = new Date().getFullYear()
-    
+
     // 获取一个用于跳转页面的函数
     const nav = useNavigate()
     return (
@@ -54,21 +32,13 @@ const MainLayout = () => {
             <Header className="header">
                 <div className={styles.logo} />
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+           
             </Header>
             <Content
                 style={{
                     padding: '0 50px',
                 }}
             >
-                {/* <Breadcrumb
-                    style={{
-                        margin: '16px 0',
-                    }}
-                >
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
-                </Breadcrumb> */}
                 <Layout
                     className="site-layout-background"
                     style={{
@@ -95,7 +65,6 @@ const MainLayout = () => {
                             minHeight: 500,
                         }}
                     >
-                        Content
                         <RenderRoutes />
                         {/* <Routes>
                             <Route path="/" element={<Home />} />
